@@ -1,0 +1,6 @@
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("index.jpeg");
+  height: 775%;
+}
