@@ -46,7 +46,6 @@
     </div>
 </nav>
 </div>
-</nav>
 <div class="container-fluid p-0">
   <img src="Shelton.png" class="img-fluid w-100" alt="Responsive image">
 </div>
@@ -54,16 +53,46 @@
   
 <!-- End Page Content -->
 <!-- Footer -->
+
 <div class="container-fluid p-0">
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">Linux</a></p>
-</footer>
+<div class="jumbotron text-center">
+<div class="container-fluid p-0">
+</div>
+  <div class="row">
+  <form>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="">Last Name</label>
+      <input type="text" class="form-control" id="lname" placeholder="Last Name">
+    </div>
+  </div>
+  <div class="form-group>
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+  </div><br>
+  <div class="col-auto col-md-14">
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+  </div>
+</form>
+    <div class="col sm-4">
+      <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+        <i class="fa fa-facebook-official w6-hover-opacity"></i>
+        <i class="fa fa-instagram w6-hover-opacity"></i>
+        <i class="fa fa-snapchat w6-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w6-hover-opacity"></i>
+        <i class="fa fa-twitter w6-hover-opacity"></i>
+        <i class="fa fa-linkedin w6-hover-opacity"></i>
+    </div>
+        <div class="col sm-4">.col</div>
+      </footer>
+
+      <!-- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">Linux</a></p> -->
+</div>
+</div>
 </div>
 </body>
 </html>
