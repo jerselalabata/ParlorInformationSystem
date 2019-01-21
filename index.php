@@ -1,4 +1,15 @@
-<?php
+<?php 
+include('server.php');
+
+    if (!isset($_SESSION['username'])) {
+      $_SESSION['msg'] = "You must log in first";
+      header('location: login.php');
+    }
+    if (isset($_GET['logout'])) {
+      session_destroy();
+      unset($_SESSION['username']);
+      header("location: login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,10 +60,10 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">View Eployee</a>
-                    <a class="dropdown-item" href="#">View Customer</a>
-                    <a class="dropdown-item" href="#">View Services</a>
-                    <a class="dropdown-item" href="#">View Tools</a>
+                    <a class="dropdown-item" href="employee.php">View Eployee</a>
+                    <a class="dropdown-item" href="customer.php">View Customer</a>
+                    <a class="dropdown-item" href="services.php">View Services</a>
+                    <a class="dropdown-item" href="tools.php">View Tools</a>
                   </div>
                 </div>
             </ul>
