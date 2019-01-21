@@ -1,6 +1,44 @@
-.bgimg {
-  background-position: center;
-  background-size: cover;
-  background-image: url("index.jpeg");
-  height: 775%;
+*{
+	margin: 0;
+	padding: 0;
 }
+
+.grid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+
+}
+
+.title{
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+.header{
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+
+
+.sidebar{
+}
+.content: {
+	grid-column-start: 1;
+	grid-column-end: 3;	
+}
+.footer{
+	grid-column-start: 1;
+	grid-column-end: 3;		
+
+}
+
+.grid div:nth-child(even) {
+	background-color: pink;
+}
+
+.grid div:nth-child(odd) {
+	background-color: gray;
+}
+
