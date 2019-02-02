@@ -27,5 +27,5 @@
 
 		$query 	= "UPDATE Instructor SET first_name='$fname',last_name='$lname',middle_name='$mname',status='$status',department='$dept' WHERE instructor_id = $ins_id";
 		mysqli_query($db, $query);
-		header('Location: view_instructor.php');
+		header('Location: viewemployee.php');
 	}
