@@ -42,7 +42,7 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="employee.php">View Eployee</a>
+                    <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
                     <a class="dropdown-item" href="customer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
@@ -55,9 +55,17 @@
 </div>
 <!-- table    -->
 <div class="container">
- <h1>Customer Table</h1>
 <table class="table">
   <thead class="thead-dark">
+    <ul>
+      <th>Customer Table</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Customer</th>
+      
+    </ul>
+
     <tr>
       <th scope="col">ID #</th>
       <th scope="col">First</th>
@@ -108,7 +116,7 @@
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <div class="container">
-<!-- Button trigger modal -->
+<!-- Button trigger modal 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-large-demo">
   Add Customer
 </button>
@@ -201,99 +209,3 @@
 </div>
 </body>
 </html>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-.formcls { 
-    padding: 9px; 
-    border: solid 1px #408080; 
-    outline: 0; 
-    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #9DCECE), to(#FFFFFF)); 
-    background: -moz-linear-gradient(top, #FFFFFF, #9DCECE 1px, #FFFFFF 25px); 
-    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
-    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
-    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
-
-    } 
-#postdiv{
-    margin-left: 50px;
-    width:30%;
-    background-color:#eee;
-}   
-</style>
-
-</head>
-
-<body>
-<div class="container">
-<h1>A demo of $_POST with Bootstrap</h1>
-    <form class="form-horizontal" role="form" method="post" action="">
-      <div class="form-group">
-        <label for="name1" class="col-sm-2 control-label">Name:</label>
-        <div class="col-sm-4">
-          <input type="text" class="form-control formcls" name="postname" placeholder="Enter Your Full Name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="gender1" class="col-sm-2 control-label">Gender:</label>
-        <div class="col-sm-2">
-        <select class="form-control formcls" name="postgender">
-          <option>Male</option>
-          <option>Female</option>
-        </select>          
-          
-        </div>
-      </div>      
-      <div class="form-group">
-        <label for="email1" class="col-sm-2 control-label">Email:</label>
-        <div class="col-sm-5">
-          <input type="email" class="form-control formcls" name="postemail" placeholder="Enter Email">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password1" class="col-sm-2 control-label">Password:</label>
-        <div class="col-sm-3">
-          <input type="password" class="form-control formcls" name="postpassword" placeholder="Password here">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="address1" class="col-sm-2 control-label">Address:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control formcls" name="postaddress" placeholder="Full Address">
-        </div>
-      </div>            
-   </div> 
-        <div class="col-sm-offset-2 col-sm-5">   
-        <p><input type="submit" class="btn btn-lg btn-block btn-info" value="Submit"></p>
-        </div><br /><br /><br />
-        <div id="postdiv"><h3>You entered following data!</h3></div>
-     </form>
-     
-< ?php
-$post_name=$_POST["postname"];
-$post_gender=$_POST["postgender"];
-$post_email=$_POST["postemail"];
-$post_password=$_POST["postpassword"];
-$post_address=$_POST["postaddress"];
-
- 
-if( $post_name )
- 
-{
- 
-   echo "Name entered is: ". $post_name ."<br>";
-   echo "Gender:" .$post_gender ."<br>";
-   echo "Email:" .$post_email ."<br>";
-   echo "Password:" .$post_password ."<br>";
-   echo "Address:" .$post_address ."<br>";
-
- 
-}
-?>
-</body>
-</html>
-

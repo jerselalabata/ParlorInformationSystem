@@ -1,4 +1,8 @@
-<?php ?>
+<?php include('server.php');
+  
+  $sql = "SELECT * FROM employee";
+  $result = mysqli_query($db, $sql);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +47,7 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="employee.php">View Eployee</a>
+                    <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
                     <a class="dropdown-item" href="customer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
@@ -56,49 +60,49 @@
 </div>
 <!-- table    -->
 <div class="container">
- <h1>Employee Table</h1>
 <table class="table">
   <thead class="thead-dark">
+      <ul>
+      <th>Emp. Table</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Employee</th>
+      
+    </ul>
     <tr>
-      <th scope="col">ID #</th>
+      <th scope="col">Emp#</th>
       <th scope="col">First</th>
-      <th scope="col">Last</th>
       <th scope="col">Middle</th>
+      <th scope="col">Last</th>
+      <th scope="col">Job #</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
+<?php
+        if(mysqli_num_rows($result)>0){
+          while($row = mysqli_fetch_array($result)){
+?>            
   <tbody>
     <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>M.</td>
+      <td><?php echo $row['employee_id'];?></td>
+      <td><?php echo $row['first_name'];?></td>
+      <td><?php echo $row['middle_initial'];?></td>
+      <td><?php echo $row['last_name'];?></td>
+      <td><?php echo $row['job_id'];?></td>
       <td>
-        <a href="#" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href="#" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
-      </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>N.</td>
-      <td>
-        <a href="#" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href="#" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
-      </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>O.</td>
-      <td>        
-        <button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button>
-        <button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+
+
+        <a href="update_emp.php" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href="delete_emp.php" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
+      <?php 
+          }
+        }
+      ?>
 </table>
   </tbody>
 </table>
@@ -110,10 +114,6 @@
 
 <div class="container">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-large-demo">
-  Add Employee
-</button>
-
 
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
@@ -128,50 +128,31 @@
       <div class="modal-body">
         <div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form id="bs-validate-demo" novalidate>
+<form method="post" action="addemployee.php">
 
   <div class="form-group">
-    <label for="NameDemo1">First Name:</label>
-    <input type="text" class="form-control col-md-12" id="NameDemo1" aria-describedby="nameHelp" placeholder="Enter First Name" required>
-        <div class="invalid-feedback">
-          Please enter your first name.
-        </div>
+    <label for="NameDemo1">Employee No:</label>
+    <input type="number" class="form-control col-md-12" name="employee_id" name="" placeholder="Employee No" required>
   </div>
   <div class="form-group">
-    <label for="NameDemo2">Last Name:</label>
-    <input type="text" class="form-control col-md-12" id="NameDemo2" aria-describedby="nameHelp" placeholder="Enter Last Name" required>
-    <small id="nameHelp" class="form-text text-muted">Please enter your last name</small>
-      <div class="invalid-feedback">
-        Last name is also required!
-      </div>    
+    <label for="NameDemo2">First Name:</label>
+    <input type="text" class="form-control col-md-12" name="first_name" placeholder="Enter First Name" required> 
   </div>  
-  <div class="form-group">
-    <label for="EmailDemo">Your Email:</label>
-    <input type="email" class="form-control col-md-12" id="EmailDemo" placeholder="Enter email" required>
-      <div class="invalid-feedback">
-        Please Enter a valid email address!
-      </div>  
+    <div class="form-group">
+    <label for="NameDemo2">Middle Initial:</label>
+    <input type="text" class="form-control col-md-12" name="middle_initial" placeholder="Enter Middle Name" required> 
+  </div>  
+    <div class="form-group">
+    <label for="NameDemo2">Last Name:</label>
+    <input type="text" class="form-control col-md-12" name="last_name" placeholder="Enter Last Name" required> 
   </div>
-  <div class="form-group">
-    <label for="passDemo">Enter Password:</label>
-    <input type="password" class="form-control col-md-12" id="passDemo" aria-describedby="passHelp" placeholder="Password" required>
-      <div class="invalid-feedback">
-        Enter the correct password!
-      </div>  
-  </div>
-  
-  <div class="form-group col-md-2">
-    <label for="selectDemo">Select Year</label>
-    <select class="form-control" id="selectDemo">
-      <option>1980</option>
-      <option>1981</option>
-      <option>1982</option>
-      <option>1982</option>
-      <option>....</option>
-    </select>
-  </div>
- 
-  <button type="submit" class="btn btn-dark">Create My Account</button>
+    <div class="form-group">
+    <label for="NameDemo2">Job No:</label>
+    <input type="number" class="form-control col-md-12" name="job_id" placeholder="Job No" required> 
+  </div>    
+
+  <input type="submit" name="add" value="Save">
+  <button type="button" onclick="window.location.href='viewemployee.php'">Back</button>
 </form>
 </div>
 
