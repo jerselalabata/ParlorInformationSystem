@@ -1,8 +1,8 @@
 <?php 
-include('addemployee.php');
+include('addcustomer.php');
   
   $id = $_GET['id'];
-  $sql = "SELECT * FROM employee WHERE employee_id = '$id'";
+  $sql = "SELECT * FROM customer_table WHERE customer_id = '$id'";
   $result = mysqli_query($db, $sql);
 
 
@@ -20,19 +20,19 @@ include('addemployee.php');
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <form method="post" action="update_emp.php"> 
+  <form method="post" action="update_customer.php"> 
    <?php 
     if(mysqli_num_rows($result)>0){
       while($row = mysqli_fetch_array($result)){
 
     ?>
   <div class="form-group">
-    <label for="NameDemo1">Employee No:</label>
-    <input type="number" class="form-control col-md-12" name="employee_id" value="<?php echo $row['employee_id'];?>" name="" placeholder="Employee No" required>
-    <input type="hidden" name="id" value="<?php echo $row['employee_id'];?>">
+    <label for="NameDemo1">Customer No:</label>
+    <input type="number" class="form-control col-md-12" name="customer_id" value="<?php echo $row['customer_id'];?>" name="" placeholder="Customer No" required>
+    <input type="hidden" name="id" value="<?php echo $row['customer_id'];?>">
   </div>
   <div class="form-group">
-    <label for="NameDemo2">First Name:</label>
+    <label for="NameDemo2">First xName:</label>
     <input type="text" class="form-control col-md-12" name="first_name" value="<?php echo $row['first_name'];?>" placeholder="Enter First Name" required> 
   </div>  
     <div class="form-group">
@@ -44,12 +44,28 @@ include('addemployee.php');
     <input type="text" class="form-control col-md-12" name="last_name" value="<?php echo $row['last_name'];?>" placeholder="Enter Last Name" required> 
   </div>
     <div class="form-group">
-    <label for="NameDemo2">Job No:</label>
-    <input type="number" class="form-control col-md-12" name="job_id" value="<?php echo $row['job_id'];?>" placeholder="Job No" required> 
+    <label for="NameDemo2">Contact No:</label>
+    <input type="number" class="form-control col-md-12" name="contact_no" value="<?php echo $row['contact_no'];?>" placeholder="Contact No" required> 
+  </div> 
+    <div class="form-group">
+    <label for="NameDemo2">Purok:</label>
+    <input type="number" class="form-control col-md-12" name="purok" value="<?php echo $row['purok'];?>" placeholder="Purok" required> 
+  </div> 
+    <div class="form-group">
+    <label for="NameDemo2">Barangay:</label>
+    <input type="text" class="form-control col-md-12" name="barangay" value="<?php echo $row['barangay'];?>" placeholder="Barangay" required> 
   </div>    
+    <div class="form-group">
+    <label for="NameDemo2">City:</label>
+    <input type="text" class="form-control col-md-12" name="city" value="<?php echo $row['city'];?>" placeholder="City" required> 
+  </div> 
+    <div class="form-group">
+    <label for="NameDemo2">Zip Code:</label>
+    <input type="number" class="form-control col-md-12" name="zip_code" value="<?php echo $row['zip_code'];?>" placeholder="Zip Code" required> 
+  </div> 
 
   <input type="submit" name="update" value="Save">
-  <button type="button" onclick="window.location.href='viewemployee.php'">Back</button>
+  <button type="button" onclick="window.location.href='viewcustomer.php'">Back</button>
 </form>
   <?php 
       }

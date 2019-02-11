@@ -1,3 +1,8 @@
+<?php include('addcustomer.php');
+  
+  $sql = "SELECT * FROM customer_table";
+  $result = mysqli_query($db, $sql);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +12,7 @@
   <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>
 
 <body>
@@ -43,7 +48,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
-                    <a class="dropdown-item" href="customer.php">View Customer</a>
+                    <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
                   </div>
@@ -57,55 +62,59 @@
 <div class="container">
 <table class="table">
   <thead class="thead-dark">
-    <ul>
-      <th>Customer Table</th>
+      <ul>
+      <th>Customer</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
       <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Customer</th>
       
     </ul>
-
     <tr>
-      <th scope="col">ID #</th>
+      <th scope="col">Cus#</th>
       <th scope="col">First</th>
-      <th scope="col">Last</th>
       <th scope="col">Middle</th>
+      <th scope="col">Last</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Purok</th>
+      <th scope="col">Barangay</th>
+      <th scope="col">City</th>
+      <th scope="col">Zip Code</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
+<?php
+        if(mysqli_num_rows($result)>0){
+          while($row = mysqli_fetch_array($result)){
+?>            
   <tbody>
     <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>M.</td>
+      <td><?php echo $row['customer_id'];?></td>
+      <td><?php echo $row['first_name'];?></td>
+      <td><?php echo $row['middle_initial'];?></td>
+      <td><?php echo $row['last_name'];?></td>
+      <td><?php echo $row['contact_no'];?></td>
+      <td><?php echo $row['purok'];?></td>
+      <td><?php echo $row['barangay'];?></td>
+      <td><?php echo $row['city'];?></td>
+      <td><?php echo $row['zip_code'];?></td>
       <td>
-        <a href="#" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href="#" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
-      </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>N.</td>
-      <td>
-        <a href="#" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href="#" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
-      </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>O.</td>
-      <td>        
-        <button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button>
-        <button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+
+
+        <a href='update_customer.php?id=<?php echo $row['customer_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addcustomer.php?delete=<?php echo $row['customer_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
+      <?php 
+          }
+        }
+      ?>
 </table>
   </tbody>
 </table>
@@ -116,11 +125,7 @@
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <div class="container">
-<!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal-large-demo">
-  Add Customer
-</button>
-
+<!-- Button trigger modal -->
 
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
@@ -135,51 +140,44 @@
       <div class="modal-body">
         <div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form id="bs-validate-demo" novalidate>
+<form method="post" action="addcustomer.php">
 
   <div class="form-group">
-    <label for="NameDemo1">First Name:</label>
-    <input type="text" class="form-control col-md-12" id="NameDemo1" aria-describedby="nameHelp" placeholder="Enter First Name" required>
-        <div class="invalid-feedback">
-          Please enter your first name.
-        </div>
+    <label for="NameDemo1">Customer No:</label>
+    <input type="number" class="form-control col-md-12" id="customer_id" name="customer_id" placeholder="Customer No:" required>
   </div>
   <div class="form-group">
-    <label for="NameDemo2">Last Name:</label>
-    <input type="text" class="form-control col-md-12" id="NameDemo2" aria-describedby="nameHelp" placeholder="Enter Last Name" required>
-    <small id="nameHelp" class="form-text text-muted">Please enter your last name</small>
-      <div class="invalid-feedback">
-        Last name is also required!
-      </div>    
+    <label for="NameDemo2">First Name:</label>
+    <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
   </div>  
   <div class="form-group">
-    <label for="EmailDemo">Your Email:</label>
-    <input type="email" class="form-control col-md-12" id="EmailDemo" placeholder="Enter email" required>
-      <div class="invalid-feedback">
-        Please Enter a valid email address!
-      </div>  
+    <label for="NameDemo2">Middle Initial:</label>
+    <input type="text" class="form-control col-md-12" id="middle_initial" name="middle_initial" placeholder="Enter Middle Name" required> 
+  </div>  
+  <div class="form-group">
+    <label for="NameDemo2">Last Name:</label>
+    <input type="text" class="form-control col-md-12" id="last_name" name="last_name" placeholder="Enter Last Name" required> 
   </div>
   <div class="form-group">
-    <label for="passDemo">Enter Password:</label>
-    <input type="password" class="form-control col-md-12" id="passDemo" aria-describedby="passHelp" placeholder="Password" required>
-      <div class="invalid-feedback">
-        Enter the correct password!
-      </div>  
+    <label for="NameDemo2">Contact No:</label>
+    <input type="number" class="form-control col-md-12" id="contact_no" name="contact_no" placeholder="Enter Contact Number:" required> 
   </div>
-  
-  <div class="form-group col-md-2">
-    <label for="selectDemo">Select Year</label>
-    <select class="form-control" id="selectDemo">
-      <option>1980</option>
-      <option>1981</option>
-      <option>1982</option>
-      <option>1982</option>
-      <option>....</option>
-    </select>
+  <div class="form-group">
+    <label for="NameDemo2">Purok:</label>
+    <input type="text" class="form-control col-md-12" id="purok" name="purok" placeholder="Your Purok:" required> 
   </div>
- 
-  <button type="submit" class="btn btn-dark">Create My Account</button>
-</form>
+    <div class="form-group">
+    <label for="NameDemo2">Barangay:</label>
+    <input type="text" class="form-control col-md-12" id="barangay" name="barangay" placeholder="Enter your Barangay" required> 
+  </div>
+    <div class="form-group">
+    <label for="NameDemo2">City:</label>
+    <input type="text" class="form-control col-md-12" id="city" name="city" placeholder="Enter your City" required> 
+  </div>
+    <div class="form-group">
+    <label for="NameDemo2">Zip Code:</label>
+    <input type="number" class="form-control col-md-12" id="zip_code" name="zip_code" placeholder="Your Zip Code:" required> 
+  </div>    
 </div>
 
 <script>
@@ -200,9 +198,10 @@
 </script>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+        <input type="submit" name="add" value="Save">
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewemployee.php'">Back</button> 
       </div>
+    </form>
     </div>
   </div>
 </div>

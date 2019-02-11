@@ -1,4 +1,4 @@
-<?php include('server.php');
+<?php include('addemployee.php');
   
   $sql = "SELECT * FROM employee";
   $result = mysqli_query($db, $sql);
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
-                    <a class="dropdown-item" href="customer.php">View Customer</a>
+                    <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
                   </div>
@@ -94,8 +94,8 @@
       <td>
 
 
-        <a href="update_emp.php" button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href="delete_emp.php" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='update_emp.php?id=<?php echo $row['employee_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addemployee.php?delete=<?php echo $row['employee_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -132,28 +132,24 @@
 
   <div class="form-group">
     <label for="NameDemo1">Employee No:</label>
-    <input type="number" class="form-control col-md-12" name="employee_id" name="" placeholder="Employee No" required>
+    <input type="number" class="form-control col-md-12" id="employee_id" name="employee_id" placeholder="Employee No" required>
   </div>
   <div class="form-group">
     <label for="NameDemo2">First Name:</label>
-    <input type="text" class="form-control col-md-12" name="first_name" placeholder="Enter First Name" required> 
+    <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
   </div>  
     <div class="form-group">
     <label for="NameDemo2">Middle Initial:</label>
-    <input type="text" class="form-control col-md-12" name="middle_initial" placeholder="Enter Middle Name" required> 
+    <input type="text" class="form-control col-md-12" id="middle_initial" name="middle_initial" placeholder="Enter Middle Name" required> 
   </div>  
     <div class="form-group">
     <label for="NameDemo2">Last Name:</label>
-    <input type="text" class="form-control col-md-12" name="last_name" placeholder="Enter Last Name" required> 
+    <input type="text" class="form-control col-md-12" id="last_name" name="last_name" placeholder="Enter Last Name" required> 
   </div>
     <div class="form-group">
     <label for="NameDemo2">Job No:</label>
-    <input type="number" class="form-control col-md-12" name="job_id" placeholder="Job No" required> 
+    <input type="number" class="form-control col-md-12" id="job_id" name="job_id" placeholder="Job No." required> 
   </div>    
-
-  <input type="submit" name="add" value="Save">
-  <button type="button" onclick="window.location.href='viewemployee.php'">Back</button>
-</form>
 </div>
 
 <script>
@@ -174,9 +170,10 @@
 </script>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+        <input type="submit" name="add" value="Save">
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewemployee.php'">Back</button> 
       </div>
+    </form>
     </div>
   </div>
 </div>
