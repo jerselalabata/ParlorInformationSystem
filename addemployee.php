@@ -39,3 +39,10 @@
 
 		$results = mysqli_query($db, "SELECT * FROM employee"); 
 
+<<<<<<< HEAD
+=======
+		$query 	= "UPDATE Instructor SET first_name='$fname',last_name='$lname',middle_name='$mname',status='$status',department='$dept' WHERE instructor_id = $ins_id";
+		mysqli_query($db, $query);
+		header('Location: viewemployee.php');
+	}
+>>>>>>> 31bc5dbed664aba66eba0ffa5fc546c842491f82
