@@ -1,6 +1,6 @@
-<?php include('addcustomer.php');
+<?php include('addjob.php');
   
-  $sql = "SELECT * FROM customer_table";
+  $sql = "SELECT * FROM job";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,8 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
+                    <a class="dropdown-item" href="viewjob.php">View Job</a>  
+                    <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Eployee</a>
                     <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
@@ -63,28 +64,15 @@
 <table class="table">
   <thead class="thead-dark">
       <ul>
-      <th>Customer</th>
+      <th>Job Table</th>
       <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Customer</th>
+      <th>
+    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add job</th>
       
     </ul>
     <tr>
-      <th scope="col">Cus#</th>
-      <th scope="col">First</th>
-      <th scope="col">Middle</th>
-      <th scope="col">Last</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Purok</th>
-      <th scope="col">Barangay</th>
-      <th scope="col">City</th>
-      <th scope="col">Zip Code</th>
+      <th scope="col">Job Id</th>
+      <th scope="col">Employee job</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -94,20 +82,13 @@
 ?>            
   <tbody>
     <tr>
-      <td><?php echo $row['customer_id'];?></td>
-      <td><?php echo $row['first_name'];?></td>
-      <td><?php echo $row['middle_initial'];?></td>
-      <td><?php echo $row['last_name'];?></td>
-      <td><?php echo $row['contact_no'];?></td>
-      <td><?php echo $row['purok'];?></td>
-      <td><?php echo $row['barangay'];?></td>
-      <td><?php echo $row['city'];?></td>
-      <td><?php echo $row['zip_code'];?></td>
+      <td><?php echo $row['job_id'];?></td>
+      <td><?php echo $row['emp_job'];?></td>
       <td>
 
 
-        <a href='update_customer.php?id=<?php echo $row['customer_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href='addcustomer.php?delete=<?php echo $row['customer_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='updatejob.php?id=<?php echo $row['job_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addjob.php?delete=<?php echo $row['job_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -132,52 +113,25 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Modal-large-demo-label">Add Customer</h5>
+        <h5 class="modal-title" id="Modal-large-demo-label">Add Job</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
+<div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form method="post" action="addcustomer.php">
+<form method="post" action="addjob.php">
+
 
   <div class="form-group">
-    <label for="NameDemo1">Customer No:</label>
-    <input type="number" class="form-control col-md-12" id="customer_id" name="customer_id" placeholder="Customer No:" required>
-  </div>
+    <label for="NameDemo2">Job No:</label>
+    <input type="number" class="form-control col-md-12" id="job_id" name="job_id" placeholder="Job No." required> 
+  </div>      
   <div class="form-group">
-    <label for="NameDemo2">First Name:</label>
-    <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
-  </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Middle Initial:</label>
-    <input type="text" class="form-control col-md-12" id="middle_initial" name="middle_initial" placeholder="Enter Middle Name" required> 
-  </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Last Name:</label>
-    <input type="text" class="form-control col-md-12" id="last_name" name="last_name" placeholder="Enter Last Name" required> 
+    <label for="NameDemo1">Employee Job:</label>
+    <input type="text" class="form-control col-md-12" id="emp_job" name="emp_job" placeholder="Employee Job" required>
   </div>
-  <div class="form-group">
-    <label for="NameDemo2">Contact No:</label>
-    <input type="number" class="form-control col-md-12" id="contact_no" name="contact_no" placeholder="Enter Contact Number:" required> 
-  </div>
-  <div class="form-group">
-    <label for="NameDemo2">Purok:</label>
-    <input type="text" class="form-control col-md-12" id="purok" name="purok" placeholder="Your Purok:" required> 
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">Barangay:</label>
-    <input type="text" class="form-control col-md-12" id="barangay" name="barangay" placeholder="Enter your Barangay" required> 
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">City:</label>
-    <input type="text" class="form-control col-md-12" id="city" name="city" placeholder="Enter your City" required> 
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">Zip Code:</label>
-    <input type="number" class="form-control col-md-12" id="zip_code" name="zip_code" placeholder="Your Zip Code:" required> 
-  </div>    
 </div>
 
 <script>
@@ -199,12 +153,13 @@
       </div>
       <div class="modal-footer">
         <input type="submit" name="add" value="Save">
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewemployee.php'">Back</button> 
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewjob.php'">Back</button> 
       </div>
     </form>
     </div>
   </div>
 </div>
 </div>
+
 </body>
 </html>

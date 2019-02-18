@@ -2,9 +2,11 @@
 include('addemployee.php');
   
   $id = $_GET['id'];
-  $sql = "SELECT * FROM employee WHERE employee_id = '$id'";
-  $result = mysqli_query($db, $sql);
-
+  $query = "SELECT * FROM job";
+  $result = mysqli_query($db, $query);
+  $sql = "SELECT * FROM employee WHERE emp_id = '$id'";
+  $result1 = mysqli_query($db, $sql);
+  $row = mysqli_fetch_array($result1);
 
 ?>
 
@@ -21,15 +23,10 @@ include('addemployee.php');
 </head>
 <body>
   <form method="post" action="update_emp.php"> 
-   <?php 
-    if(mysqli_num_rows($result)>0){
-      while($row = mysqli_fetch_array($result)){
-
-    ?>
+  
   <div class="form-group">
     <label for="NameDemo1">Employee No:</label>
-    <input type="number" class="form-control col-md-12" name="employee_id" value="<?php echo $row['employee_id'];?>" name="" placeholder="Employee No" required>
-    <input type="hidden" name="id" value="<?php echo $row['employee_id'];?>">
+    <input type="number" class="form-control col-md-12" name="emp_id" value="<?php echo $row['emp_id'];?>" name="" placeholder="Employee No" required>
   </div>
   <div class="form-group">
     <label for="NameDemo2">First Name:</label>
@@ -42,19 +39,22 @@ include('addemployee.php');
     <div class="form-group">
     <label for="NameDemo2">Last Name:</label>
     <input type="text" class="form-control col-md-12" name="last_name" value="<?php echo $row['last_name'];?>" placeholder="Enter Last Name" required> 
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">Job No:</label>
-    <input type="number" class="form-control col-md-12" name="job_id" value="<?php echo $row['job_id'];?>" placeholder="Job No" required> 
-  </div>    
+  </div> 
+    <label>Employee Job:</label>
+    <select name="job_id" value="<?php echo $row1['job_id'];?>" ><br>
+      <?php 
+        if(mysqli_num_rows($result)){
+          while($row1 = mysqli_fetch_array($result)){
+?> 
 
-  <input type="submit" name="update" value="Save">
+      <option value="<?php echo $row1['job_id'];?>" selected><?php echo $row1['emp_job'];?></option>
+      <?php
+          }
+        }
+      ?>
+      <input type="submit" name="update" value="Save">
   <button type="button" onclick="window.location.href='viewemployee.php'">Back</button>
-</form>
-  <?php 
-      }
-    }
-  ?>
+  </form>
 </body>
   <script src="bootstrap-4.0.0/dist/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="bootstrap-4.0.0/dist/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

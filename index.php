@@ -60,8 +60,9 @@ include('server.php');
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
-                    <a class="dropdown-item" href="customer.php">View Customer</a>
+                    <a class="dropdown-item" href="viewjob.php">View Job</a>
+                    <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Eployee</a>
+                    <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
                   </div>

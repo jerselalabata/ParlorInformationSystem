@@ -1,6 +1,6 @@
 <?php include('addemployee.php');
   
-  $sql = "SELECT * FROM employee";
+  $sql = "SELECT * FROM employee ";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,8 @@
                     Menu
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="viewemployee.php">View Eployee</a>
+                    <a class="dropdown-item" href="viewjob.php?username=<?php echo $_GET['username']; ?>">View Job</a>  
+                    <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Eployee</a>
                     <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
@@ -68,7 +69,8 @@
       <th></th>
       <th></th>
       <th></th>
-      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Employee</th>
+      <th>
+    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Employee</th>
       
     </ul>
     <tr>
@@ -86,7 +88,7 @@
 ?>            
   <tbody>
     <tr>
-      <td><?php echo $row['employee_id'];?></td>
+      <td><?php echo $row['emp_id'];?></td>
       <td><?php echo $row['first_name'];?></td>
       <td><?php echo $row['middle_initial'];?></td>
       <td><?php echo $row['last_name'];?></td>
@@ -94,8 +96,8 @@
       <td>
 
 
-        <a href='update_emp.php?id=<?php echo $row['employee_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href='addemployee.php?delete=<?php echo $row['employee_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='update_emp.php?id=<?php echo $row['emp_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addemployee.php?delete=<?php echo $row['emp_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -114,6 +116,11 @@
 
 <div class="container">
 <!-- Button trigger modal -->
+<?php
+  
+  $sql = "SELECT * FROM job";
+  $result = mysqli_query($db, $sql);
+?>
 
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
@@ -126,32 +133,39 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
+<div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
 <form method="post" action="addemployee.php">
 
   <div class="form-group">
     <label for="NameDemo1">Employee No:</label>
-    <input type="number" class="form-control col-md-12" id="employee_id" name="employee_id" placeholder="Employee No" required>
+    <input type="number" class="form-control col-md-12" id="emp_id" name="emp_id" placeholder="Employee No" required>
   </div>
   <div class="form-group">
     <label for="NameDemo2">First Name:</label>
     <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
   </div>  
-    <div class="form-group">
+  <div class="form-group">
     <label for="NameDemo2">Middle Initial:</label>
     <input type="text" class="form-control col-md-12" id="middle_initial" name="middle_initial" placeholder="Enter Middle Name" required> 
   </div>  
-    <div class="form-group">
+  <div class="form-group">
     <label for="NameDemo2">Last Name:</label>
     <input type="text" class="form-control col-md-12" id="last_name" name="last_name" placeholder="Enter Last Name" required> 
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">Job No:</label>
-    <input type="number" class="form-control col-md-12" id="job_id" name="job_id" placeholder="Job No." required> 
   </div>    
-</div>
-
+    <label>Job ID:</label>
+    <select name="job_id">
+      <?php 
+        if(mysqli_num_rows($result)){
+          while($row = mysqli_fetch_array($result)){
+      ?>
+      <option value="<?php echo $row['job_id'];?>"><?php echo $row['emp_job'];?></option>
+      <?php
+          }
+        }
+      ?>
+    </select>
+  </div>
 <script>
 (function() {
   'use strict';
@@ -178,5 +192,6 @@
   </div>
 </div>
 </div>
+
 </body>
 </html>
