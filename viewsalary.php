@@ -1,6 +1,8 @@
-<?php include('addemployee.php');
+<?php 
+  include("server.php");
+  include('addsalary.php');
   
-  $sql = "SELECT * FROM employee, job WHERE employee.job_id = job.job_id";
+  $sql = "SELECT *,salary,time_stamp FROM employee,salary WHERE employee.emp_id = salary.emp_id";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -49,7 +51,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewjob.php?username=<?php echo $_GET['username']; ?>">View Job</a>
                     <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Employee</a>
-                    <a class="dropdown-item" href="viewsalary.php">View Salary</a>
+                    <a class="dropdown-item" href="viewsalary.php?username=<?php echo $_GET['username']; ?>">View Salary</a>
                   </div>
                 </div>&nbsp; &nbsp; &nbsp; &nbsp;
                 <div class="dropdown">
@@ -75,21 +77,17 @@
 <table class="table">
   <thead class="thead-dark">
       <ul>
-      <th>Emp. Table</th>
-      <th></th>
-      <th></th>
+      <th>Salary Table</th>
       <th></th>
       <th></th>
       <th>
-    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Employee</th>
+    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Salary</th>
       
     </ul>
     <tr>
-      <th scope="col">Emp#</th>
-      <th scope="col">First</th>
-      <th scope="col">Middle</th>
-      <th scope="col">Last</th>
-      <th scope="col">Job Name</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Time Stamp</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -99,16 +97,14 @@
 ?>            
   <tbody>
     <tr>
-      <td><?php echo $row['emp_id'];?></td>
-      <td><?php echo $row['first_name'];?></td>
-      <td><?php echo $row['middle_initial'];?></td>
-      <td><?php echo $row['last_name'];?></td>
-      <td><?php echo $row['emp_job'];?></td>
+      <td><?php echo $row['first_name'].'&nbsp'. $row['middle_initial'].'&nbsp'. $row['last_name'];?></td>
+      <td><?php echo $row['salary'];?></td>
+      <td><?php echo $row['time_stamp'];?></td>
       <td>
 
 
-        <a href='update_emp.php?id=<?php echo $row['emp_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href='addemployee.php?delete=<?php echo $row['emp_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='updatesalary.php?id=<?php echo $row['emp_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addsalary.php?delete=<?php echo $row['emp_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -126,11 +122,12 @@
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <div class="container">
+  <?php include("server.php");?>
 <!-- Button trigger modal -->
 <?php
   
-  $sql = "SELECT * FROM job";
-  $result = mysqli_query($db, $sql);
+  $query = "SELECT * FROM employee";
+  $result1 = mysqli_query($db, $query);
 ?>
 
 <!-- large size Modal -->
@@ -138,7 +135,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Modal-large-demo-label">Add Employee</h5>
+        <h5 class="modal-title" id="Modal-large-demo-label">Add Salary</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -146,36 +143,23 @@
       <div class="modal-body">
 <div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form method="post" action="addemployee.php">
-
-  <div class="form-group">
-    <label for="NameDemo1">Employee No:</label>
-    <input type="number" class="form-control col-md-12" id="emp_id" name="emp_id" placeholder="Employee No" required>
-  </div>
-    <div class="form-group">
-    <label for="NameDemo2">First Name:</label>
-    <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
-  </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Middle Initial:</label>
-    <input type="text" class="form-control col-md-12" id="middle_initial" name="middle_initial" placeholder="Enter Middle Name" required> 
-  </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Last Name:</label>
-    <input type="text" class="form-control col-md-12" id="last_name" name="last_name" placeholder="Enter Last Name" required> 
-  </div>    
-    <label>Job ID:</label>
-    <select name="job_id">
+<form method="post" action="addsalary.php">
+    <label>Employee:</label>
+    <select name="emp_id">
       <?php 
-        if(mysqli_num_rows($result)){
-          while($row = mysqli_fetch_array($result)){
+        if(mysqli_num_rows($result1)){
+          while($row1 = mysqli_fetch_array($result1)){
       ?>
-      <option value="<?php echo $row['job_id'];?>"><?php echo $row['emp_job'];?></option>
+      <option value="<?php echo $row1['emp_id'];?>" ><?php echo $row1['first_name'];?></option>
       <?php
           }
         }
       ?>
     </select>
+    <div class="form-group">
+    <label for="NameDemo1">Salary:</label>
+    <input type="number" class="form-control col-md-12" id="salary" name="salary" placeholder="Amount" required>
+  </div> 
   </div>
 <script>
 (function() {

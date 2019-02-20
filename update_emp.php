@@ -28,6 +28,8 @@ include('addemployee.php');
     <label for="NameDemo1">Employee No:</label>
     <input type="number" class="form-control col-md-12" name="emp_id" value="<?php echo $row['emp_id'];?>" name="" placeholder="Employee No" required>
   </div>
+  <input type="hidden" name="id" value="<?php echo $row['emp_id'];?>">
+
   <div class="form-group">
     <label for="NameDemo2">First Name:</label>
     <input type="text" class="form-control col-md-12" name="first_name" value="<?php echo $row['first_name'];?>" placeholder="Enter First Name" required> 
@@ -41,11 +43,11 @@ include('addemployee.php');
     <input type="text" class="form-control col-md-12" name="last_name" value="<?php echo $row['last_name'];?>" placeholder="Enter Last Name" required> 
   </div> 
     <label>Employee Job:</label>
-    <select name="job_id" value="<?php echo $row1['job_id'];?>" ><br>
+    <select name="job_id"><br>
       <?php 
         if(mysqli_num_rows($result)){
           while($row1 = mysqli_fetch_array($result)){
-?> 
+      ?> 
 
       <option value="<?php echo $row1['job_id'];?>" selected><?php echo $row1['emp_job'];?></option>
       <?php

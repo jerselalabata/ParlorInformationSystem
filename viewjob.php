@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <div class="container-fluid p-0">
+<div class="container-fluid p-0">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar10">
@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="welcome.php">Welcome</a>
+                    <a class="nav-link" href="#">Welcome</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -44,11 +44,20 @@
                 </li>
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
+                    Employee
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="viewjob.php">View Job</a>  
-                    <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Eployee</a>
+                    <a class="dropdown-item" href="viewjob.php?username=<?php echo $_GET['username']; ?>">View Job</a>
+                    <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Employee</a>
+                    <a class="dropdown-item" href="viewsalary.php">View Salary</a>
+                  </div>
+                </div>&nbsp; &nbsp; &nbsp; &nbsp;
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Customer
+                  </button>
+
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
                     <a class="dropdown-item" href="tools.php">View Tools</a>
@@ -57,6 +66,8 @@
             </ul>
         </div>
     </div>
+</nav>
+</div>
 </nav>
 </div>
 <!-- table    -->

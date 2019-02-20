@@ -5,15 +5,12 @@
 	
 	if(isset($_POST['add'])){
 		$emp_id  	= mysqli_real_escape_string($db,$_POST['emp_id']);
-		$first_name   	= mysqli_real_escape_string($db,$_POST['first_name']);
-		$middle_initial = mysqli_real_escape_string($db,$_POST['middle_initial']);
-		$last_name   	= mysqli_real_escape_string($db,$_POST['last_name']);
- 		$job_id      	= mysqli_real_escape_string($db,$_POST['job_id']);
+		$salary   	= mysqli_real_escape_string($db,$_POST['salary']);
 
- 		$sql = "INSERT INTO `employee` (`emp_id`, `first_name`, `middle_initial`, `last_name`, `job_id`) VALUES ('$emp_id', '$first_name', '$middle_initial', '$last_name', '$job_id')";
+ 		$sql = "INSERT INTO `salary` (`emp_id`, `salary`) VALUES ('$emp_id', '$salary')";
  		$result = mysqli_query($db, $sql);
 		if($result == true){
-			header('location: viewemployee.php?username='.$username);
+			header('location: viewsalary.php?username='.$username);
 		}else{
 			echo "Somthing went wrong";
 		}
@@ -38,8 +35,8 @@
 
 	if (isset($_GET['delete'])) {
 		$id = $_GET['delete'];
-		mysqli_query($db, "DELETE FROM `employee` WHERE `employee`.`emp_id` = $id"); 
-		header('location: viewemployee.php?username='.$username);
+		mysqli_query($db, "DELETE FROM `salary` WHERE `salary`.`emp_id` = $id"); 
+		header('location: viewsalary.php?username='.$username);
 	}
 
-		$results = mysqli_query($db, "SELECT * FROM employee"); 
+		$results = mysqli_query($db, "SELECT * FROM salary"); 
