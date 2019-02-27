@@ -1,14 +1,13 @@
 <?php 
   include("server.php");
-  include('addsalary.php');
   
   $id = $_GET['id'];
-  $employee = "SELECT *,salary,time_stamp FROM employee,salary WHERE employee.emp_id = salary.emp_id";
+  $employee = "SELECT * FROM salary,employee WHERE salary.salary_id='$id' AND salary.emp_id = employee.emp_id";
   $result = mysqli_query($db, $employee);
-  $employee = mysqli_fetch_array($result);
-  $sql = "SELECT * FROM salary WHERE emp_id = '$id'";
+  $row = mysqli_fetch_array($result);
+/*  $sql = "SELECT * FROM salary WHERE emp_id = '$id'";
   $result1 = mysqli_query($db, $sql);
-  $row = mysqli_fetch_array($result1);
+  $row = mysqli_fetch_array($result1);*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,17 +22,17 @@
 
 </head>
 <body>
-<form method="post" action="updatesalary.php">
+<form method="post" action="addsalary.php">
     <div class="form-group">
 	    <label for="NameDemo1">Name:</label>
-	    <input type="text" class="form-control col-md-12" id="salary" name="salary" value="<?php echo $employee['first_name']. $employee['middle_initial'].$employee['last_name'];?>" placeholder="Amount" required>
+	    <input type="text" class="form-control col-md-12" id="emp_id" name="emp_id" value="<?php echo $row['first_name'];?>" placeholder="Amount" required>
   	</div>
 
     <div class="form-group">
 	    <label for="NameDemo1">Salary:</label>
 	    <input type="number" class="form-control col-md-12" id="salary" name="salary" value="<?php echo $row['salary'];?>" placeholder="Amount" required>
   	</div>
-  	<input type="hidden" name="id" value="<?php echo $row['emp_id'];?>">
+  	<input type="hidden" name="id" value="<?php echo $row['salary'];?>">
 	<input type="submit" name="add" value="Save">
     <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewsalary.php'">Back</button> 
  </form> 

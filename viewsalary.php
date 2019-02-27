@@ -80,13 +80,11 @@
       <th>Salary Table</th>
       <th></th>
       <th></th>
-      <th></th>
       <th>
     <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Salary</th>
       
     </ul>
     <tr>
-      <th scope="col">Id</th>
       <th scope="col">Employee</th>
       <th scope="col">Salary</th>
       <th scope="col">Time Stamp</th>
@@ -99,7 +97,6 @@
 ?>            
   <tbody>
     <tr>
-      <td><?php echo $row['salary_id'];?></td>
       <td><?php echo $row['first_name'].'&nbsp'. $row['middle_initial'].'&nbsp'. $row['last_name'];?></td>
       <td><?php echo $row['salary'];?></td>
       <td><?php echo $row['time_stamp'];?></td>

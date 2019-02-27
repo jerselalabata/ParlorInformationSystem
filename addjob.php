@@ -11,7 +11,7 @@
     if($result == true){
       header('location: viewjob.php?username='.$username);
     }else{
-      echo "Somthing went wrong";
+      echo "Something went wrong";
     }
   }
 
@@ -21,7 +21,8 @@
     $job_id  = mysqli_real_escape_string($db,$_POST['job_id']);
     $emp_job   = mysqli_real_escape_string($db,$_POST['emp_job']);
 
-    $sql = "UPDATE `job` SET `job_id` = '$job_id', `emp_job` = '$emp_job' WHERE `job`.`job_id` =id";
+    $sql = "UPDATE `job` SET `job_id` = '$job_id', `emp_job` = '$emp_job' WHERE `job`.`job_id` = '$id'";
+
     mysqli_query($db, $sql);
     $_SESSION['message'] = "updated!"; 
     header('location: viewjob.php?username='.$username);

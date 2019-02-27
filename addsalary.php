@@ -12,22 +12,20 @@
 		if($result == true){
 			header('location: viewsalary.php?username='.$username);
 		}else{
-			echo "Somthing went wrong";
+			echo "Something went wrong";
 		}
 	}
 
 
 	if(isset($_POST['update'])){
 		$id = mysqli_real_escape_string($db,$_POST['id']);
-		$emp_id	= mysqli_real_escape_string($db,$_POST['emp_id']);
 		$salary	= mysqli_real_escape_string($db,$_POST['salary']);
 
-		$sql = "UPDATE `employee` SET `emp_id` = '$emp_id', `first_name` = '$first_name', `middle_initial` = '$middle_initial', `last_name` = '$last_name', `job_id` = '$job_id' WHERE `employee`.`emp_id` = '$emp_id'";
-
+		$sql = "UPDATE `salary` SET `salary` = '$salary', `time_stamp` = '$time_stamp' WHERE `salary`.`salary_id` = '$id'";
 
 		mysqli_query($db, $sql);
 		$_SESSION['message'] = "updated!"; 
-		header('location: viewemployee.php?username='.$username);
+		header('location: viewsalary.php?username='.$username);
 	}
 
 	if (isset($_GET['delete'])) {
@@ -37,3 +35,6 @@
 	}
 
 		$results = mysqli_query($db, "SELECT * FROM salary"); 
+
+
+?>

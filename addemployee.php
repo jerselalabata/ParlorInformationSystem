@@ -1,6 +1,7 @@
 <?php include('server.php');
 
 
+
 	$username = $_SESSION['username'];
 	
 	if(isset($_POST['add'])){
@@ -43,3 +44,4 @@
 	}
 
 		$results = mysqli_query($db, "SELECT * FROM employee"); 
+?>
