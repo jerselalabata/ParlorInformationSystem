@@ -19,30 +19,29 @@ include('addjob.php');
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <form method="post" action="updatejob.php"> 
+  <form method="post" action="addjob.php">
    <?php 
     if(mysqli_num_rows($result)>0){
       while($row = mysqli_fetch_array($result)){
-
     ?>
   <div class="form-group">
-
     <label for="NameDemo2">Job ID:</label>
     <input type="number" class="form-control col-md-12" name="job_id" value="<?php echo $row['job_id'];?>" placeholder="Job ID" required> 
-    <input type="hidden" name="id" value="<?php echo $row['job_id'];?>">
+    
   </div>   
   <div class="form-group">
     <label for="NameDemo1">Employee Job:</label>
-    <input type="text" class="form-control col-md-12" name="employee_id" value="<?php echo $row['emp_job'];?>" name="" placeholder="Employee Job" required>
-    <input type="hidden" name="id" value="<?php echo $row['emp_job'];?>">
+    <input type="text" class="form-control col-md-12" name="emp_job" value="<?php echo $row['emp_job'];?>" name="" placeholder="Employee Job" required>
   </div> 
+  <input type="hidden" name="id" value="<?php echo $row['job_id'];?>">
   <input type="submit" name="update" value="Save">
   <button type="button" onclick="window.location.href='viewjob.php'">Back</button>
-</form>
-  <?php 
+    <?php 
       }
     }
-  ?>
+    ?>
+  </form>
+
 </body>
   <script src="bootstrap-4.0.0/dist/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="bootstrap-4.0.0/dist/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

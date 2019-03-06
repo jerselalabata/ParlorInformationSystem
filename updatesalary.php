@@ -32,8 +32,13 @@
 	    <label for="NameDemo1">Salary:</label>
 	    <input type="number" class="form-control col-md-12" id="salary" name="salary" value="<?php echo $row['salary'];?>" placeholder="Amount" required>
   	</div>
-  	<input type="hidden" name="id" value="<?php echo $row['salary'];?>">
-	<input type="submit" name="add" value="Save">
+ <!--  	    <div class="form-group">
+	    <label for="NameDemo1">Time Stamp:</label>
+	    <input type="now" class="form-control col-md-12" id="time_stamp" name="time_stamp" value="<?php echo $row['time_stamp'];?>" placeholder="time_stamp" required>
+  	</div>
+ -->  	<input type="hidden" name="id" value="<?php echo $row['time_stamp'];?>">
+  	<input type="hidden" name="id" value="<?php echo $row['salary_id'];?>">
+	<input type="submit" name="update" value="Save">
     <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewsalary.php'">Back</button> 
  </form> 
 </body>

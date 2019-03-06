@@ -62,7 +62,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
                     <a class="dropdown-item" href="services.php">View Services</a>
-                    <a class="dropdown-item" href="tools.php">View Tools</a>
+                    <a class="dropdown-item" href="viewtools.php">View Tools</a>
                   </div>
                 </div>
             </ul>

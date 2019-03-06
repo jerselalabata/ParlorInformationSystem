@@ -3,9 +3,12 @@
 
   $username = $_SESSION['username'];
 
+$job_id = "";
+$emp_job = "";
+
   if(isset($_POST['add'])){
-    $job_id    = mysqli_real_escape_string($db,$_POST['job_id']);
-    $emp_job     = mysqli_real_escape_string($db,$_POST['emp_job']);
+    $job_id    = mysqli_real_escape_string($db, $_POST['job_id']);
+    $emp_job     = mysqli_real_escape_string($db, $_POST['emp_job']);
     $sql = "INSERT INTO `job` (`job_id`, `emp_job`) VALUES ('$job_id', '$emp_job')";
     $result = mysqli_query($db, $sql);
     if($result == true){
@@ -21,8 +24,7 @@
     $job_id  = mysqli_real_escape_string($db,$_POST['job_id']);
     $emp_job   = mysqli_real_escape_string($db,$_POST['emp_job']);
 
-    $sql = "UPDATE `job` SET `job_id` = '$job_id', `emp_job` = '$emp_job' WHERE `job`.`job_id` = '$id'";
-
+    $sql = "UPDATE `job` SET `job_id` = '$job_id', `emp_job` = '$emp_job' WHERE `job`.`job_id` = '$job_id'"; 
     mysqli_query($db, $sql);
     $_SESSION['message'] = "updated!"; 
     header('location: viewjob.php?username='.$username);

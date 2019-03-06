@@ -21,8 +21,8 @@
 		$id = mysqli_real_escape_string($db,$_POST['id']);
 		$salary	= mysqli_real_escape_string($db,$_POST['salary']);
 
-		$sql = "UPDATE `salary` SET `salary` = '$salary', `time_stamp` = '$time_stamp' WHERE `salary`.`salary_id` = '$id'";
-
+		$sql = "UPDATE `salary` SET `salary` = '$salary'  WHERE `salary`.`salary_id` = '$id'";
+	// echo ($sql);
 		mysqli_query($db, $sql);
 		$_SESSION['message'] = "updated!"; 
 		header('location: viewsalary.php?username='.$username);
