@@ -3,8 +3,8 @@
 
   $username = $_SESSION['username'];
 
-$job_id = "";
-$emp_job = "";
+// $job_id = "";
+// $emp_job = "";
 
   if(isset($_POST['add'])){
     $job_id    = mysqli_real_escape_string($db, $_POST['job_id']);

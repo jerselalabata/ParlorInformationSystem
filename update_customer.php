@@ -49,7 +49,7 @@ include('addcustomer.php');
   </div> 
     <div class="form-group">
     <label for="NameDemo2">Purok:</label>
-    <input type="number" class="form-control col-md-12" name="purok" value="<?php echo $row['purok'];?>" placeholder="Purok" required> 
+    <input type="text" class="form-control col-md-12" name="purok" value="<?php echo $row['purok'];?>" placeholder="Purok" required> 
   </div> 
     <div class="form-group">
     <label for="NameDemo2">Barangay:</label>

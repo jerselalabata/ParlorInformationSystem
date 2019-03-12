@@ -1,6 +1,6 @@
-<?php include('addtools.php');
+<?php include('addservices.php');
   
-  $sql = "SELECT * FROM tools_items";
+  $sql = "SELECT * FROM services";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -75,22 +75,16 @@
 <table class="table">
   <thead class="thead-dark">
       <ul>
-      <th>Tools Item</th>
+      <th>Services</th>
       <th></th>
       <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Tools</th>
+      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Services</th>
       
     </ul>
     <tr>
-      <th scope="col">ID No:</th>
-      <th scope="col">Time stamp</th>
+      <th scope="col">Services Code</th>
       <th scope="col">Description</th>
       <th scope="col">Amount</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Unit</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -100,17 +94,14 @@
 ?>            
   <tbody>
     <tr>
-      <td><?php echo $row['id_no'];?></td>
-      <td><?php echo $row['time_stamp'];?></td>
+      <td><?php echo $row['services_code'];?></td>
       <td><?php echo $row['description'];?></td>
       <td><?php echo $row['amount'];?></td>
-      <td><?php echo $row['quantity'];?></td>
-      <td><?php echo $row['unit'];?></td>
       <td>
 
 
-        <a href='update_tools.php?id=<?php echo $row['id_no']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href='addtools.php?delete=<?php echo $row['id_no']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='update_services.php?id=<?php echo $row['services_code']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addservices.php?delete=<?php echo $row['services_code']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -135,7 +126,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Modal-large-demo-label">Add Tools</h5>
+        <h5 class="modal-title" id="Modal-large-demo-label">Add Services</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -143,28 +134,20 @@
       <div class="modal-body">
         <div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form method="post" action="addtools.php">
+<form method="post" action="addservices.php">
 
   <div class="form-group">
-    <label for="NameDemo1">ID No:</label>
-    <input type="number" class="form-control col-md-12" id="id_no" name="id_no" placeholder="ID No:" required>
+    <label for="NameDemo1">Services Code:</label>
+    <input type="number" class="form-control col-md-12" id="services_code" name="services_code" placeholder="Services Code" required>
   </div>
   <div class="form-group">
     <label for="NameDemo2">Description:</label>
-    <input type="text" class="form-control col-md-12" id="description" name="description" placeholder="description" required> 
+    <input type="text" class="form-control col-md-12" id="description" name="description" placeholder="Description" required> 
   </div>  
   <div class="form-group">
     <label for="NameDemo2">Amount:</label>
     <input type="number" class="form-control col-md-12" id="amount" name="amount" placeholder="Amount" required> 
   </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Quantity:</label>
-    <input type="number" class="form-control col-md-12" id="quantity" name="quantity" placeholder="Quantity" required> 
-  </div>
-  <div class="form-group">
-    <label for="NameDemo2">Unit:</label>
-    <input type="number" class="form-control col-md-12" id="unit" name="unit" placeholder="Unit:" required> 
-  </div>
 </div>
 
 <script>
@@ -186,7 +169,7 @@
       </div>
       <div class="modal-footer">
         <input type="submit" name="add" value="Save">
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewtools.php'">Back</button> 
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.href='viewservices.php'">Back</button> 
       </div>
     </form>
     </div>

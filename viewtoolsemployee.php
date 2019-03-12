@@ -1,6 +1,6 @@
-<?php include('addtools.php');
+<?php include('addtoolsemployee.php');
   
-  $sql = "SELECT * FROM tools_items";
+  $sql = "SELECT * FROM tools_employee ";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -63,6 +63,7 @@
                     <a class="dropdown-item" href="viewservices.php">View Services</a>
                     <a class="dropdown-item" href="viewservicesitems.php">View Services Items</a>
                     <a class="dropdown-item" href="viewtools.php">View Tools</a>
+                    <a class="dropdown-item" href="viewtoolsemployee.php">View Tools Employee</a>
                   </div>
                 </div>
             </ul>
@@ -75,42 +76,36 @@
 <table class="table">
   <thead class="thead-dark">
       <ul>
-      <th>Tools Item</th>
+      <th>Tools Employee</th>
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
-      <th></th>
-      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Tools</th>
+      <th><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Modal-large-demo"><i class="fa fa-plus" aria-hidden="true"></i> Add Tools Employee</th>
       
     </ul>
     <tr>
-      <th scope="col">ID No:</th>
-      <th scope="col">Time stamp</th>
-      <th scope="col">Description</th>
-      <th scope="col">Amount</th>
+      <th scope="col">Emp No</th>
+      <th scope="col">Tools ID</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Unit</th>
+      <th scope="col">Time Stamp</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
 <?php
         if(mysqli_num_rows($result)>0){
           while($row = mysqli_fetch_array($result)){
-?>            
+?>        
   <tbody>
     <tr>
+      <td><?php echo $row['emp_id'];?></td>
       <td><?php echo $row['id_no'];?></td>
-      <td><?php echo $row['time_stamp'];?></td>
-      <td><?php echo $row['description'];?></td>
-      <td><?php echo $row['amount'];?></td>
       <td><?php echo $row['quantity'];?></td>
-      <td><?php echo $row['unit'];?></td>
+      <td><?php echo $row['time_stamp'];?></td>
       <td>
 
 
-        <a href='update_tools.php?id=<?php echo $row['id_no']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
-        <a href='addtools.php?delete=<?php echo $row['id_no']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+        <a href='update_toolsemployee.php?id=<?php echo $row['toolemployee_id']; ?>' button type="button" class="btn btn-success"><i class="fa fa-edit" aria-hidden="true"></i> Edit</button></a>
+        <a href='addtoolsemployee.php?delete=<?php echo $row['toolemployee_id']; ?>'" button type="button" class="btn btn-dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
       </td>
     </tr>
   </tbody>
@@ -129,13 +124,18 @@
 
 <div class="container">
 <!-- Button trigger modal -->
+<?php
+  
+  // $sql = "SELECT * FROM employee, tools_employee, tools_items WHERE employee.emp_id=tools_employee.emp_id AND tools_employee.id_no=tools_items.id_no";
+  // $result = mysqli_query($db, $sql);
+?>
 
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Modal-large-demo-label">Add Tools</h5>
+        <h5 class="modal-title" id="Modal-large-demo-label">Add Tools Employee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -143,27 +143,39 @@
       <div class="modal-body">
         <div class="container">
 <!--<h3>Bootstrap 4 Form validation</h3> -->
-<form method="post" action="addtools.php">
+<form method="post" action="addtoolsemployee.php">
 
-  <div class="form-group">
-    <label for="NameDemo1">ID No:</label>
-    <input type="number" class="form-control col-md-12" id="id_no" name="id_no" placeholder="ID No:" required>
-  </div>
-  <div class="form-group">
-    <label for="NameDemo2">Description:</label>
-    <input type="text" class="form-control col-md-12" id="description" name="description" placeholder="description" required> 
-  </div>  
-  <div class="form-group">
-    <label for="NameDemo2">Amount:</label>
-    <input type="number" class="form-control col-md-12" id="amount" name="amount" placeholder="Amount" required> 
-  </div>  
+    <label>Emp ID:</label>
+    <select name="emp_id">
+      <?php
+         $sql = "SELECT * FROM employee";
+         $result = mysqli_query($db, $sql);
+        if(mysqli_num_rows($result)){
+          while($row = mysqli_fetch_array($result)){
+      ?>
+      <option value="<?php echo $row['emp_id'];?>"><?php echo $row['emp_id'];?></option>
+      <?php
+          }
+        }
+      ?>
+    </select>
+    <label>ID No:</label>
+    <select name="id_no">
+      <?php 
+         $sql1 = "SELECT * FROM tools_items";
+         $result1 = mysqli_query($db, $sql1);
+        if(mysqli_num_rows($result1)){
+          while($row = mysqli_fetch_array($result1)){
+      ?>
+      <option value="<?php echo $row['id_no'];?>"><?php echo $row['id_no'];?></option>
+      <?php
+          }
+        }
+      ?>
+    </select>
   <div class="form-group">
     <label for="NameDemo2">Quantity:</label>
     <input type="number" class="form-control col-md-12" id="quantity" name="quantity" placeholder="Quantity" required> 
-  </div>
-  <div class="form-group">
-    <label for="NameDemo2">Unit:</label>
-    <input type="number" class="form-control col-md-12" id="unit" name="unit" placeholder="Unit:" required> 
   </div>
 </div>
 

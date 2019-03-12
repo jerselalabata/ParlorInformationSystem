@@ -51,6 +51,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewjob.php?username=<?php echo $_GET['username']; ?>">View Job</a>
                     <a class="dropdown-item" href="viewemployee.php?username=<?php echo $_GET['username']; ?>">View Employee</a>
+                    <a class="dropdown-item" href="viewtoolsemployee.php?username=<?php echo $_GET['username']; ?>">View Tools Employee</a>
                     <a class="dropdown-item" href="viewsalary.php?username=<?php echo $_GET['username']; ?>">View Salary</a>
                   </div>
                 </div>&nbsp; &nbsp; &nbsp; &nbsp;
@@ -61,7 +62,8 @@
 
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="viewcustomer.php">View Customer</a>
-                    <a class="dropdown-item" href="services.php">View Services</a>
+                    <a class="dropdown-item" href="viewservices.php">View Services</a>
+                    <a class="dropdown-item" href="viewservicesitems.php">View Services Items</a>
                     <a class="dropdown-item" href="viewtools.php">View Tools</a>
                   </div>
                 </div>
