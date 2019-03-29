@@ -26,8 +26,8 @@ include('addservices.php');
     ?>
   <div class="form-group">
     <h3>Update Services</h3>
-<!--     <label for="NameDemo1">Services Code:</label>
-    <input type="number" class="form-control col-md-12" name="services_code" value="<?php echo $row['services_code'];?>" required> -->
+    <label for="NameDemo1">Services Code:</label>
+    <input type="number" class="form-control col-md-12" name="services_code" value="<?php echo $row['services_code'];?>" required>
     <input type="hidden" name="id" value="<?php echo $row['services_code'];?>">
   </div>
   <div class="form-group">

@@ -5,13 +5,13 @@
 	$username = $_SESSION['username'];
 	
 	if(isset($_POST['add'])){
-		$emp_id  	= mysqli_real_escape_string($db,$_POST['emp_id']);
+		// $emp_id  	= mysqli_real_escape_string($db,$_POST['emp_id']);
 		$first_name   	= mysqli_real_escape_string($db,$_POST['first_name']);
 		$middle_initial = mysqli_real_escape_string($db,$_POST['middle_initial']);
 		$last_name   	= mysqli_real_escape_string($db,$_POST['last_name']);
  		$job_id      	= mysqli_real_escape_string($db,$_POST['job_id']);
 
- 		$sql = "INSERT INTO `employee` (`emp_id`, `first_name`, `middle_initial`, `last_name`, `job_id`) VALUES ('$emp_id', '$first_name', '$middle_initial', '$last_name', '$job_id')";
+ 		$sql = "INSERT INTO `employee` (`first_name`, `middle_initial`, `last_name`, `job_id`) VALUES ('$first_name', '$middle_initial', '$last_name', '$job_id')";
  		$result = mysqli_query($db, $sql);
 		if($result == true){
 			header('location: viewemployee.php?username='.$username);
@@ -22,14 +22,15 @@
 
 
 	if(isset($_POST['update'])){
+
 		$id = mysqli_real_escape_string($db,$_POST['id']);
-		$emp_id	= mysqli_real_escape_string($db,$_POST['emp_id']);
+		// $emp_id	= mysqli_real_escape_string($db,$_POST['emp_id']);
 		$first_name 	= mysqli_real_escape_string($db,$_POST['first_name']);
 		$middle_initial = mysqli_real_escape_string($db,$_POST['middle_initial']);
 		$last_name 		= mysqli_real_escape_string($db,$_POST['last_name']);
 		$job_id 		= mysqli_real_escape_string($db,$_POST['job_id']);
 
-		$sql = "UPDATE `employee` SET `emp_id` = '$emp_id', `first_name` = '$first_name', `middle_initial` = '$middle_initial', `last_name` = '$last_name', `job_id` = '$job_id' WHERE `employee`.`emp_id` = '$emp_id'";
+		$sql = "UPDATE `employee` SET `first_name` = '$first_name', `middle_initial` = '$middle_initial', `last_name` = '$last_name', `job_id` = '$job_id' WHERE `employee`.`emp_id` = '$id'";
 
 
 		mysqli_query($db, $sql);

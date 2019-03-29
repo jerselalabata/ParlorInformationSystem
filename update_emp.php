@@ -24,15 +24,16 @@ include('addemployee.php');
 <body>
   <form method="post" action="update_emp.php"> 
   
-  <div class="form-group">
+ <!--  <div class="form-group">
     <label for="NameDemo1">Employee No:</label>
     <input type="number" class="form-control col-md-12" name="emp_id" value="<?php echo $row['emp_id'];?>" name="" placeholder="Employee No" required>
   </div>
-  <input type="hidden" name="id" value="<?php echo $row['emp_id'];?>">
+  <input type="hidden" name="id" value="<?php echo $row['emp_id'];?>"> -->
 
   <div class="form-group">
     <label for="NameDemo2">First Name:</label>
     <input type="text" class="form-control col-md-12" name="first_name" value="<?php echo $row['first_name'];?>" placeholder="Enter First Name" required> 
+  <input type="hidden" name="id" value="<?php echo $row['emp_id'];?>">
   </div>  
     <div class="form-group">
     <label for="NameDemo2">Middle Initial:</label>

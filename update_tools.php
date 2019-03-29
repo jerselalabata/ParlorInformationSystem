@@ -39,12 +39,23 @@ include('addtools.php');
   </div>  
     <div class="form-group">
     <label for="NameDemo2">Quantity:</label>
-    <input type="number" class="form-control col-md-12" name="quantity" value="<?php echo $row['quantity'];?>" required> 
+    <input type="text" class="form-control col-md-12" name="quantity" value="<?php echo $row['quantity'];?>" required> 
   </div>
-    <div class="form-group">
-    <label for="NameDemo2">Unit:</label>
-    <input type="number" class="form-control col-md-12" name="unit" value="<?php echo $row['unit'];?>" required> 
-  </div> 
+    <label>Unit:</label>
+    <select name="unit">
+      <?php 
+        $sql = "SELECT * FROM unit";
+        $result = mysqli_query($db, $sql);
+
+        if(mysqli_num_rows($result)){
+          while($row = mysqli_fetch_array($result)){
+      ?>
+      <option value="<?php echo $row['unit'];?>"><?php echo $row['unit'];?></option>
+      <?php
+          }
+        }
+      ?>
+    </select>
   <input type="submit" name="update" value="Save">
   <button type="button" onclick="window.location.href='viewtools.php'">Back</button>
 </form>

@@ -7,12 +7,12 @@
 		$emp_id  	= mysqli_real_escape_string($db,$_POST['emp_id']);
 		$salary   	= mysqli_real_escape_string($db,$_POST['salary']);
 
- 		$sql = "INSERT INTO `salary` (`emp_id`, `salary`) VALUES ('$emp_id', '$salary')";
+ 		$sql = "INSERT INTO `salary` (`emp_id`, `salary`) VALUES ($emp_id, $salary)";
  		$result = mysqli_query($db, $sql);
 		if($result == true){
 			header('location: viewsalary.php?username='.$username);
 		}else{
-			echo "Something went wrong";
+			echo "Something went wrong" .$sql;
 		}
 	}
 

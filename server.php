@@ -14,7 +14,7 @@ $user_id ="";
 $id = 0;
 $update = false;
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'parlordatabase');
+$db = mysqli_connect('localhost', 'root', '', 'Parlordatabase');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {

@@ -1,6 +1,6 @@
 <?php include('addtoolsemployee.php');
   
-  $sql = "SELECT * FROM tools_employee ";
+  $sql = "SELECT * FROM tools_employee, employee, tools_items WHERE tools_employee.emp_id = employee.emp_id AND tools_employee.id_no = tools_items.id_no  ";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome</a>
+                    <a class="nav-link" href="index.php">Welcome</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -84,8 +84,8 @@
       
     </ul>
     <tr>
-      <th scope="col">Emp No</th>
-      <th scope="col">Tools ID</th>
+      <th scope="col">Emp Name</th>
+      <th scope="col">Tools </th>
       <th scope="col">Quantity</th>
       <th scope="col">Time Stamp</th>
       <th scope="col">Action</th>
@@ -97,8 +97,8 @@
 ?>        
   <tbody>
     <tr>
-      <td><?php echo $row['emp_id'];?></td>
-      <td><?php echo $row['id_no'];?></td>
+      <td><?php echo $row['first_name'].'&nbsp'. $row['middle_initial'].'&nbsp'. $row['last_name'];?></td>
+      <td><?php echo $row['description'];?></td>
       <td><?php echo $row['quantity'];?></td>
       <td><?php echo $row['time_stamp'];?></td>
       <td>
@@ -145,7 +145,7 @@
 <!--<h3>Bootstrap 4 Form validation</h3> -->
 <form method="post" action="addtoolsemployee.php">
 
-    <label>Emp ID:</label>
+    <label>Emp Name:</label>
     <select name="emp_id">
       <?php
          $sql = "SELECT * FROM employee";
@@ -153,13 +153,13 @@
         if(mysqli_num_rows($result)){
           while($row = mysqli_fetch_array($result)){
       ?>
-      <option value="<?php echo $row['emp_id'];?>"><?php echo $row['emp_id'];?></option>
+      <option value="<?php echo $row['emp_id'];?>"><?php echo $row['first_name'];?></option>
       <?php
           }
         }
       ?>
-    </select>
-    <label>ID No:</label>
+    </select><br>
+    <label>Description:</label>
     <select name="id_no">
       <?php 
          $sql1 = "SELECT * FROM tools_items";
@@ -167,7 +167,7 @@
         if(mysqli_num_rows($result1)){
           while($row = mysqli_fetch_array($result1)){
       ?>
-      <option value="<?php echo $row['id_no'];?>"><?php echo $row['id_no'];?></option>
+      <option value="<?php echo $row['id_no'];?>"><?php echo $row['description'];?></option>
       <?php
           }
         }

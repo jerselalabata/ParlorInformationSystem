@@ -5,9 +5,6 @@
   $employee = "SELECT * FROM salary,employee WHERE salary.salary_id='$id' AND salary.emp_id = employee.emp_id";
   $result = mysqli_query($db, $employee);
   $row = mysqli_fetch_array($result);
-/*  $sql = "SELECT * FROM salary WHERE emp_id = '$id'";
-  $result1 = mysqli_query($db, $sql);
-  $row = mysqli_fetch_array($result1);*/
 ?>
 <!DOCTYPE html>
 <html>

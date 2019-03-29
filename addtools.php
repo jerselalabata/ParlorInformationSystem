@@ -11,7 +11,8 @@
 		$quantity   	= mysqli_real_escape_string($db,$_POST['quantity']);
  		$unit      	= mysqli_real_escape_string($db,$_POST['unit']);
 
- 		$sql = "INSERT INTO `tools_items` (`id_no`, `description`, `amount`, `quantity`, `unit`) VALUES ('$id_no', '$description', '$amount', '$quantity', '$unit')";
+ 		$sql = "INSERT INTO `tools_items` (`id_no`, `time_stamp`, `description`, `amount`, `quantity`, `unit`) VALUES ('$id_no', CURRENT_TIMESTAMP, 'scisor', '$amount', '$quantity', '$unit')";
+ 				// "INSERT INTO `tools_items` (`id_no`, `time_stamp`, `description`, `amount`, `quantity`, `unit`) VALUES ('$id_no', CURRENT_TIMESTAMP, 'scisor', '$amount', '$quantity', '$unit'");
  		$result = mysqli_query($db, $sql);
 		if($result == true){
 			header('location: viewtools.php?username='.$username);

@@ -2,7 +2,7 @@
   include("server.php");
   include('addsalary.php');
   
-  $sql = "SELECT *,salary,time_stamp FROM employee,salary WHERE employee.emp_id = salary.emp_id";
+  $sql = "SELECT * FROM employee,salary WHERE employee.emp_id = salary.emp_id";
   $result = mysqli_query($db, $sql);
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome</a>
+                    <a class="nav-link" href="index.php">Welcome</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -149,6 +149,7 @@
     <label>Employee:</label>
     <select name="emp_id">
       <?php 
+
         if(mysqli_num_rows($result1)){
           while($row1 = mysqli_fetch_array($result1)){
       ?>

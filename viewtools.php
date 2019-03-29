@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome</a>
+                    <a class="nav-link" href="index.php">Welcome</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -130,6 +130,7 @@
 <div class="container">
 <!-- Button trigger modal -->
 
+
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -161,10 +162,21 @@
     <label for="NameDemo2">Quantity:</label>
     <input type="number" class="form-control col-md-12" id="quantity" name="quantity" placeholder="Quantity" required> 
   </div>
-  <div class="form-group">
-    <label for="NameDemo2">Unit:</label>
-    <input type="number" class="form-control col-md-12" id="unit" name="unit" placeholder="Unit:" required> 
-  </div>
+    <label>Unit:</label>
+    <select name="unit">
+      <?php 
+        $sql = "SELECT * FROM unit";
+        $result = mysqli_query($db, $sql);
+
+        if(mysqli_num_rows($result)){
+          while($row = mysqli_fetch_array($result)){
+      ?>
+      <option value="<?php echo $row['unit'];?>"><?php echo $row['unit'];?></option>
+      <?php
+          }
+        }
+      ?>
+    </select>
 </div>
 
 <script>

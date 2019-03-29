@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse" id="navbar10">
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome</a>
+                    <a class="nav-link" href="index.php">Welcome</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -150,10 +150,10 @@
 <!--<h3>Bootstrap 4 Form validation</h3> -->
 <form method="post" action="addemployee.php">
 
-  <div class="form-group">
+<!--   <div class="form-group">
     <label for="NameDemo1">Employee No:</label>
     <input type="number" class="form-control col-md-12" id="emp_id" name="emp_id" placeholder="Employee No" required>
-  </div>
+  </div> -->
     <div class="form-group">
     <label for="NameDemo2">First Name:</label>
     <input type="text" class="form-control col-md-12" id="first_name" name="first_name" placeholder="Enter First Name" required> 
