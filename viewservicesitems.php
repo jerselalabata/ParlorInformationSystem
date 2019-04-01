@@ -116,48 +116,13 @@ $result=mysqli_query($db, $Joinser);
 </table>
 <!--<a href="" class="btn btn-outline-primary" type="button" style="position: absolute;right: 2%;bottom: 3%">Add</a> -->
 </body>
-<script src="bootstrap-4.0.0/dist/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="bootstrap-4.0.0/dist/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="bootstrap-4.0.0/dist/js/jquery-3.2.1.slim.min.js"></script>
+<script src="bootstrap-4.0.0/dist/js/popper.min.js"></script>
+<script src="bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
 
 <div class="container">
 <!-- Button trigger modal -->
-<!-- <?php 
 
-  if (isset($POST['add'])){
-    $customer_id = mysqli_real_escape_string($db, $POST['customer_id']);
-    $reciept_no = mysqli_real_escape_string($db, $POST['reciept_no']);
-
-    $receit = array();
-    $Reciept = '';
-    $Services = $_POST['services_list'];
-
-    $Customer = "INSERT INTO services_availed (customer_id, reciept_no) VALUES ($customer_id, '$reciept_no');";
-    mysql_query($db, $Customer);
-
-    for($i = 0; $i < count($_POST['services_list']); $i++){
-      $receit[] = $reciept_no;
-    }
-
-    for($num = 0; $num < count($_POST['services_list']); $num++){
-      $services_1 = mysqli_real_escape_string($db, $Services[$num]);
-      $receipt_1 = mysqli_real_escape_string($db, $receit[$num]);
-      $Reciept.= "INSERT INTO services_items (services_code, reciept_no) VALUES ('$services_1', '$receipt_1');";
-
-    }
-
-    if($Reciept != ''){
-      if(mysqli_multi_query($db, $Reciept) == true){
-        echo "<script> alert(Successfuly Added!)</script>";
-      }
-      else{
-        echo "<script> alert(Error!)</script>";
-      }
-    }
-
-  }
-
-?> -->
 <!-- large size Modal -->
 <div class="modal fade" id="Modal-large-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-large-demo-label" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
